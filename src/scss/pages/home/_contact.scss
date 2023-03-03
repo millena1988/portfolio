@@ -1,0 +1,101 @@
+@use '../../components/details';
+@use '../../utilities/responsive';
+
+.contact {
+    display: grid;
+    grid-template-columns: var(--grid-container);
+    padding: var(--section-gap) 0;
+
+    &__inner {
+        grid-column: inner;
+        display: flex;
+        justify-content: space-between;
+        gap: var(--gap-l);
+
+        @include responsive.max(64rem) {
+            flex-direction: column;
+        }
+    }
+
+}
+
+.contact-card {
+    @include details.frame($color: var(--color-dark-500));
+    background-color: var(--color-accent-700);
+    padding: var(--gap-m) var(--gap-m);
+    text-align: center;
+    max-width: 460px;
+    width: 100%;
+
+    &__title {
+        @include details.separator($align: center);
+        font-size: var(--font-size-4);
+    }
+
+    &__text {
+        @include details.separator-dots;
+        strong {
+            font-weight: 600;
+        }
+
+        &:last-of-type {
+            &:after {
+                display: none;
+            }
+        }
+    }
+
+    @include responsive.max(64rem) {
+
+        flex: 1;
+        max-width: 100%;
+    }
+}
+
+.contact-form {
+    padding: var(--gap-m) 0 var(--gap-m) var(--gap-l);
+    flex: 0 1 50%;
+
+    &__title {
+        @include details.separator;
+        font-size: var(--font-size-4);
+    }
+
+    input, textarea {
+        @include responsive.max(40rem) {
+            --gap-m: 1rem;
+        }
+        margin-bottom: var(--gap-m);
+    }
+
+    textarea {
+        resize: none;
+    }
+
+    &__row {
+        display: flex;
+        gap: var(--gap-l);
+    }
+
+    @include responsive.max(64rem) {
+        flex: 1;
+        width: 100%;
+        padding-right: var(--gap-l);
+    }
+    
+    @include responsive.max(40rem) {
+        padding-left: var(--gap-s);
+        padding-right: var(--gap-s);
+
+        &__row {
+            gap: var(--gap-s);
+        }
+    }
+
+    @include responsive.max(30rem) {
+        &__row {
+            display: block;
+        }
+    }
+
+}
